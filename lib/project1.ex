@@ -20,10 +20,10 @@ defmodule Project1 do
         k_zero_string = get_k_zero_string(k, "")
         
         server_pid = spawn(SERVER, :listen, []) 
-        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", 0, k, k_zero_string, server_pid])
-        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", 0, k, k_zero_string, server_pid])
-        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", 0, k, k_zero_string, server_pid])
-        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", 0, k, k_zero_string, server_pid])
+        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+        spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
 
         empty_loop()
     end
