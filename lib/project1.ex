@@ -22,7 +22,6 @@ defmodule Server do
     end
 
     def serve(client, k) do
-        IO.puts "sent"
         :gen_tcp.send(client, to_string k)
     end
 
@@ -34,16 +33,16 @@ defmodule Server do
             # spawn worker for mining
             
             #might break
-            { :ok, socket } = :gen_tcp.connect({127,0,0,1}, 19927, [{:active, false}])
+            { :ok, socket } = :gen_tcp.connect({127,0,0,1}, 19999, [{:active, false}])
             {:ok, resp} = :gen_tcp.recv(socket, 0)
 
             IO.puts resp
             
             #k =  (resp)
             #change k
-            { :ok, socket1 } = :gen_tcp.connect({127,0,0,1}, 19093, [{:active, false}])
+            { :ok, socket1 } = :gen_tcp.connect({127,0,0,1}, 19036, [{:active, false}])
             spawn(WORKER, :print_bitcoins_new_machine, 
-                  ["chaitanyaakulkar", 1, get_k_zero_string(1, ""), str, socket1])
+                  ["chaitanyaakulkar", 3, get_k_zero_string(3, ""), str, socket1])
             empty_loop()
         else   
             k = elem(Integer.parse(str), 0)
@@ -53,18 +52,18 @@ defmodule Server do
             server_pid = spawn(PRINT_SERVER, :listen, [])
             
             spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
 
             Logger.info "Accepting connections on port 8789"
-            {:ok, socket1} = :gen_tcp.listen(19093,
+            {:ok, socket1} = :gen_tcp.listen(19036,
                                             [{:active, false}])
             spawn(PRINT_SERVER, :accept, [socket1])
 
             Logger.info "Accepting connections on port 7384"
 
-            {:ok, socket} = :gen_tcp.listen(19927,
+            {:ok, socket} = :gen_tcp.listen(19999,
                                             [{:active, false}])
             accept(k, socket)
         end

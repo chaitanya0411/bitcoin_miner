@@ -8,13 +8,15 @@ defmodule PRINT_SERVER do
     end
 
     def accept(socket) do
-        loop_acceptor(socket)
+        {:ok, client} = :gen_tcp.accept(socket)
+        spawn fn -> serve(client) end
+        accept(socket)
     end
 
-    def loop_acceptor(socket) do
-        {:ok, client} = :gen_tcp.accept(socket)
+    def serve(client) do
         {:ok, print_message} = :gen_tcp.recv(client, 0)
         IO.puts print_message
-        loop_acceptor(socket)
+        serve(client)
     end
+    
 end

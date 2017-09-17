@@ -20,14 +20,15 @@ defmodule WORKER do
     end
 
     def print_bitcoins_new_machine(user_input, k, k_zeros, str, socket) do
+        
         input = user_input <> get_random_string()
         hash = Base.encode16(:crypto.hash(:sha256, input))
-        IO.puts "yes"
+        IO.puts "hey"
         
         if String.slice(hash, 0..k-1) == k_zeros do
             :gen_tcp.send(socket, Enum.join([input,hash], "\t"))
         end
-        
+
         print_bitcoins_new_machine(user_input, k, k_zeros, str, socket)
     end
 
