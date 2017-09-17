@@ -8,12 +8,12 @@ defmodule Project1.Mixfile do
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      escript: escript
+      escript: escript()
     ]
   end
 
   def escript do
-    [main_module: Project1]
+    [main_module: Server]
   end
 
   # Run "mix help compile.app" to learn about applications.

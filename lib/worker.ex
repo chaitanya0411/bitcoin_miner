@@ -3,7 +3,7 @@ defmodule WORKER do
 
     def get_random_string() do
         random_number = :rand.uniform(10)
-        random_string = :crypto.strong_rand_bytes(random_number) |> 
+        :crypto.strong_rand_bytes(random_number) |> 
                         Base.url_encode64 |> 
                         binary_part(0, random_number)
     end
@@ -23,7 +23,6 @@ defmodule WORKER do
         
         input = user_input <> get_random_string()
         hash = Base.encode16(:crypto.hash(:sha256, input))
-        IO.puts "hey"
         
         if String.slice(hash, 0..k-1) == k_zeros do
             :gen_tcp.send(socket, Enum.join([input,hash], "\t"))
