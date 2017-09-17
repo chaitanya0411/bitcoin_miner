@@ -1,7 +1,7 @@
 defmodule Server do
 
-    def get_server_port, do: 19998
-    def get_print_server_port, do: 19035
+    def get_server_port, do: 19992
+    def get_print_server_port, do: 19033
     
     
     def get_k_zero_string(k, k_zero_string) do
@@ -20,12 +20,12 @@ defmodule Server do
     def accept(k, socket) do
         
         {:ok, client} = :gen_tcp.accept(socket)
-        spawn fn -> serve(client, k) end
+        spawn fn -> serve(client, Integer.to_string(k)) end
         accept(k, socket)
     end
 
     def serve(client, k) do
-        :gen_tcp.send(client, to_string k)
+        :gen_tcp.send(client, k)
     end
 
     def main(args) do
@@ -35,26 +35,25 @@ defmodule Server do
             # connect, get server pid, k
             # spawn worker for mining
             
-            #might break
-            { :ok, socket } = :gen_tcp.connect({127,0,0,1}, get_server_port(), [{:active, false}])
+            ip_char_list = String.to_charlist(str)
+            { :ok, socket } = 
+                :gen_tcp.connect(ip_char_list, get_server_port(), [{:active, false}])
             {:ok, resp} = :gen_tcp.recv(socket, 0)
 
-            IO.puts resp
+            k = String.to_integer(to_string resp)
             
-            #k =  (resp)
-            #change k
-            { :ok, socket1 } = :gen_tcp.connect({127,0,0,1}, get_print_server_port(), [{:active, false}])
+            { :ok, socket1 } = :gen_tcp.connect(ip_char_list, get_print_server_port(), [{:active, false}])
             spawn(WORKER, :print_bitcoins_new_machine, 
-                  ["chaitanyaakulkar", 3, get_k_zero_string(3, ""), str, socket1])
+                  ["chaitanyaakulkar", k, get_k_zero_string(k, ""), str, socket1])
             empty_loop()
-        else   
+        else
             k = elem(Integer.parse(str), 0)
             
             k_zero_string = get_k_zero_string(k, "")
             
             server_pid = spawn(PRINT_SERVER, :listen, [])
             
-            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
             #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
             #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
             #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
