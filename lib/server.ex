@@ -53,10 +53,10 @@ defmodule Server do
             
             server_pid = spawn(PRINT_SERVER, :listen, [])
             
-            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
-            #spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
+            spawn(WORKER, :print_bitcoins, ["chaitanyaakulkar", k, k_zero_string, server_pid])
 
             {:ok, socket1} = :gen_tcp.listen(get_print_server_port(),
                                             [{:active, false}])
