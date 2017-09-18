@@ -4,6 +4,13 @@ Date: September,18 2017
 READ ME file for COP 5615 : Distributed Operating Systems :Project 1
 
 Group members:
+
+| Command | Description |
+| --- | --- |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
+
+
 | Name | UFID | Email ID |
 | --- | --- | --- |
 | Govind Rajan Chandra | 26113109 | cgovindrajan@ufl.edu |
