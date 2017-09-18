@@ -36,7 +36,7 @@ mix escript.build
 ./project1 <IP_ADDRESS OF SERVER>
 ```
  
- **Note : Mined Bit Coins and corresponing hash value will be printed on server only.**
+ **Note : Mined Bit Coins and corresponing hash value will be printed only on server.**
 
 # Implementation Details
 
