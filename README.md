@@ -7,7 +7,7 @@
 | Govind Rajan Chandra | 26113109 | cgovindrajan@ufl.edu     |
 | Chaitanya Kulkarni   |          | chaitanyaakulkar@ufl.edu |
 
-# PROJECT DEFINITION
+# Project Defination
 
 - Goal of the project is to mine and print bitcons using SHA-256 algorithm [condition : hash value should be prefixed with k zeros].
 - The projects uses elixir and actor worker modules to build bitcoin miner which can run on multi-core machines.
