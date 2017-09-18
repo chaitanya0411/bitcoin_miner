@@ -1,24 +1,15 @@
-# Project1
+# Project1 : BIT COIN MINER
 
-Date: September,18 2017
-READ ME file for COP 5615 : Distributed Operating Systems :Project 1
+**Group members**
 
-Group members:
-
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
-
-| Name | UFID | Email ID |
-| --- | --- | --- |
-| Govind Rajan Chandra | 26113109 | cgovindrajan@ufl.edu |
-| Chaitanya Kulkarni |            | chaitanyaakulkar@ufl.edu |
+| Name                 | UFID     | Email ID                 |
+| :------------------: | :------: | :----------------------: |
+| Govind Rajan Chandra | 26113109 | cgovindrajan@ufl.edu     |
+| Chaitanya Kulkarni   |          | chaitanyaakulkar@ufl.edu |
 
 # PROJECT DEFINITION
 
-- Goal of the Project is to mine and print bitcons using SHA-256 algorithm [condition : hash value should be prefixed with k zeros].
+- Goal of the project is to mine and print bitcons using SHA-256 algorithm [condition : hash value should be prefixed with k zeros].
 - The projects uses elixir and actor worker modules to build bitcoin miner which can run on multi-core machines.
 - Project should capablity to add more workers  to bit.coin mining capabilities
 - The bitcoins are mined using the SHA-256 algorithm and the input string with the corresponding SHA-256 hash is printed.
@@ -26,31 +17,38 @@ Group members:
 
 # Implementation Details
 
+- Components:
+- Server
+> Responsible to intialize all connections, send value of K to worker on request and spawn worker for mining.
+- Worker
+> Request **k** from server and start mining bit coins with k 0 prefixed and send found bit coins to Print Server.
+- Print Server 
+> Responsible to print bitcoins reciveed from workers.
+
 - Work Unit :
-For generating the strings, we have used the random string function with a length of 64 bytes. We used the 64 byte because it will give us a higher probability of getting the bitcoins. In our actor worker model, we have designed the system in such a way that for each iteration the workers are assigned a specific task from the actor and this process continues as the workers start to complete their assigned tasks and it goes on untill the required number of bitcoins are generated.
 
-- The test result for K=4 :
+We tried below combination to generate bitcoins with max k value.
 
-- Result for K = 5 :
+- Combinations with strings
+- Generate Hash on numeric sequence.
+- Generate Hash on random string with random length of 0-10.
+- Generate Hash on random string with length of 32 bytes.
+- Generate Hash on random string with 64 bytes.
+
+- Combinations with workers
+- Generate bitcoins on single machine(4 cores) with 4 spwan workers.
+- Generate bitcoins on single machine(4 cores) with 4 spwan workers, Print server and server.
+- Generate bitcoins on configration with : one machine(4 cores) with 4 spwan workers, Print server and server and  one machine(8-core) with 8 worker process.
+- Generate bitcoins on configration with : one machine(4 cores) with 4 spwan workers, Print server and server, one machine(8-core) with 8 worker process, one machine(4-core) 6 worker process.
+
+Best Result for k = 8 on above configration :
+
+``` Govinds-MacBook-Pro:bitcoin_miner cgovindrajan$ ./project1 8
+chaitanyaakulkar4R9OMLlEOKP8imBsF0kkCse2ztQaPdtqbajM-ddF6tT20zS5c_i_E9CUBN4ow6H_	0000000061AB62CDAE64FCE62CCFC7A5C7E812E9A778E8EC3DC568FA7739133C
+chaitanyaakulkar9qrbHtBkNV1Aa2aI8sYnrLJUwXsB7bEHqRzd877Tz-EHzC9V4jhtrQY6ScjTCXG4	00000000EE861F6C54662FC3B691559F6BF96C67C6C931ADF8060C89DCB5BAEF
+```
 
 Ratio of CPU time to Real time in this case is = (user + sys) / real = 
-
-- From our distributed bitcoin miner system, we were able to mine a bitcoin with leading zero's counting to 7. i.e. for k = 7 we were able to mine a bitcoin.
-
-- We were able to run our code with 4 machines each having four cores and getting the CPU utilization of atleast 350%.
-
-# Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `project1` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:project1, "~> 0.1.0"}
-  ]
-end
-```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
