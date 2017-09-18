@@ -4,10 +4,10 @@ Date: September,18 2017
 READ ME file for COP 5615 : Distributed Operating Systems :Project 1
 
 Group members:
-|----------------------|-----------------|--------------------------|
-| Govind Rajan Chandra |     26113109    | cgovindrajan@ufl.edu     |
-| Chaitanya Kulkarni   |                 | chaitanyaakulkar@ufl.edu |
-|----------------------|-----------------|--------------------------|
+| Name | UFID | Email ID |
+| --- | --- | --- |
+| Govind Rajan Chandra | 26113109 | cgovindrajan@ufl.edu |
+| Chaitanya Kulkarni |            | chaitanyaakulkar@ufl.edu |
 
 # PROJECT DEFINITION
 
