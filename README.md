@@ -29,13 +29,13 @@
 
 We tried below combination to generate bitcoins with max k value.
 
-- Combinations with strings
+Combinations with string generations
 - Generate Hash on numeric sequence.
 - Generate Hash on random string with random length of 0-10.
 - Generate Hash on random string with length of 32 bytes.
 - Generate Hash on random string with 64 bytes.
 
-- Combinations with workers
+Combinations with system configration
 - Generate bitcoins on single machine(4 cores) with 4 spwan workers.
 - Generate bitcoins on single machine(4 cores) with 4 spwan workers, Print server and server.
 - Generate bitcoins on configration with : one machine(4 cores) with 4 spwan workers, Print server and server and  one machine(8-core) with 8 worker process.
