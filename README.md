@@ -15,6 +15,29 @@
 - The bitcoins are mined using the SHA-256 algorithm and the input string with the corresponding SHA-256 hash is printed.
 - The performace of the system is measured using the ratio of the CPU time to Real time
 
+# Execution Steps
+
+> Compile
+
+```
+mix clean
+mix escript.build
+```
+ 
+> Initialize server and start mining 
+
+``` 
+./project1 <k>
+```
+  
+> Add Workers in mininig process
+
+``` 
+./project1 <IP_ADDRESS OF SERVER>
+```
+ 
+ **Note : Mined Bit Coins and corresponing hash value will be printed on server only.**
+
 # Implementation Details
 
 - Components:
