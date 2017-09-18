@@ -2,10 +2,9 @@ defmodule WORKER do
     
 
     def get_random_string() do
-        random_number = :rand.uniform(10)
-        :crypto.strong_rand_bytes(random_number) |> 
+        :crypto.strong_rand_bytes(64) |> 
                         Base.url_encode64 |> 
-                        binary_part(0, random_number)
+                        binary_part(0, 64)
     end
 
     def print_bitcoins(user_input, k, k_zeros, server_pid) do
